@@ -18,16 +18,18 @@ import java.sql.Time;
 public class GameView extends View
 {
     private static final String TAG = GameView.class.getSimpleName();
-    private Bitmap bitmap;
 
-    private float x = 0;
-    private float y = 0;
+    private Ball b1;
+    private Ball b2;
+
     private long lastFrame;
-    private float frameTime;
+    public static float frameTime;
+    public static GameView view;
 
     public GameView(Context context, @Nullable AttributeSet attrs)
     {
         super(context, attrs);
+        GameView.view = this;
         initResource();
         StartUpdating();
     }
@@ -40,9 +42,14 @@ public class GameView extends View
 
     private void doGameFrame()
     {
-        x += 100 * frameTime;
-        y += 200 * frameTime;
+        b1.update();
+        b2.update();
 
+     //   b1.x += b1.dx * frameTime;
+     //   b1.y += b1.dy * frameTime;
+
+     //   b2.x += b2.x * frameTime;
+     //   b2.y += b2.y * frameTime;
         invalidate();
 
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
@@ -60,16 +67,17 @@ public class GameView extends View
         });
     }
     private void initResource() {
-        Resources res = getResources();
-        bitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
-        x = 100;
-        y = 100;
+        b1 = new Ball(100, 100, 100, 200);
+        b2 = new Ball(900, 100, -50, 150);
     }
 
     @Override
     protected void onDraw(Canvas canvas)
     {
-        canvas.drawBitmap(bitmap, x, y,null);
-        Log.d(TAG, "Drawing at " + x + ", " + y + " Time " + frameTime);
+        b1.draw(canvas);
+        b2.draw(canvas);
+        //canvas.drawBitmap(bitmap, b1.x, b1.y,null);
+        //canvas.drawBitmap(bitmap, b2.x, b2.y,null);
+
     }
 }
