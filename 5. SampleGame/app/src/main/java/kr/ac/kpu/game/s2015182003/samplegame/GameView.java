@@ -1,20 +1,14 @@
 package kr.ac.kpu.game.s2015182003.samplegame;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,9 +18,10 @@ public class GameView extends View
     public static final int BALL_COUNT = 10;
 
     Player player;
-    ArrayList<Ball> balls = new ArrayList<>();
-    private Ball b1;
-    private Ball b2;
+    //ArrayList<Ball> balls = new ArrayList<>();
+    ArrayList<GameObject> objects = new ArrayList<>();
+    private Object b1;
+    private Object b2;
 
     private long lastFrame;
     public static float frameTime;
@@ -48,9 +43,9 @@ public class GameView extends View
 
     private void doGameFrame()
     {
-        for(Ball b: balls)
+        for(GameObject o: objects)
         {
-            b.update();
+            o.update();
         }
      //   b1.update();
      //   b2.update();
@@ -86,8 +81,9 @@ public class GameView extends View
             float dx = rand.nextFloat() * 1000 - 500;
             float dy = rand.nextFloat() * 1000 - 500;
             Ball b = new Ball(x, y, dx, dy);
-            balls.add(b);
+            objects.add(b);
         }
+        objects.add(player);
         //b1 = new Ball(100, 100, 100, 200);
         //b2 = new Ball(900, 100, -50, 150);
     }
@@ -95,9 +91,9 @@ public class GameView extends View
     @Override
     protected void onDraw(Canvas canvas)
     {
-        for(Ball b: balls)
+        for(GameObject o: objects)
         {
-            b.draw(canvas);
+            o.draw(canvas);
         }
         player.draw(canvas);
         //b1.draw(canvas);
