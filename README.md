@@ -3,7 +3,7 @@
 ---
 
 ### 게임 컨셉 : 순발력 및 순간판단력을 필요로하는 퍼즐게임. 어느정도 비슷한 게임인 Catch a Color의 스크린샷.
-[Catch a Color](https://files.mybox.naver.com/.fileLink/UAeXUN0DZhOQVFQFse2c61ASYs2cHFKQUiBYP%2Fdny6KTE6lKO0RqUJKvRg1UCugS%2FHrZ2B8ctXkWu8ve8IkQ7wI%3D/catch%20a%20color.jpg?authtoken=csPArsS2dunWIFWUlXhKVQI%3D)
+![Catch a Color](https://files.mybox.naver.com/.fileLink/UAeXUN0DZhOQVFQFse2c61ASYs2cHFKQUiBYP%2Fdny6KTE6lKO0RqUJKvRg1UCugS%2FHrZ2B8ctXkWu8ve8IkQ7wI%3D/catch%20a%20color.jpg?authtoken=csPArsS2dunWIFWUlXhKVQI%3D)
 
 ---
 
@@ -36,7 +36,7 @@
 * 시간이 다 되어서 게임이 끝나면, 최종 점수로 올바른 방향에 넣은 공, 잘못된 방향에 넣은 공, 시간 안에 넣지 못해서 사라진 공 갯수를 각각 보여준다.
 
 * 예상되는 게임 모습을 그려본 스케치.
-[예상 스케치](https://files.mybox.naver.com/.fileLink/UAeXUN0DZhOQVFQFse2c64fqY73DQ2b4r52jLTCZcWQyNbaWLrds%2Bz3fnMdGhC7MwX7mStIcZdSOyuHBpc6mUAI%3D/%EC%8A%A4%EC%BC%80%EC%B9%98.png?authtoken=Hbd9%2F72p9LSU1uOqfnV5hAI%3D)
+![예상 스케치](https://files.mybox.naver.com/.fileLink/UAeXUN0DZhOQVFQFse2c64fqY73DQ2b4r52jLTCZcWQyNbaWLrds%2Bz3fnMdGhC7MwX7mStIcZdSOyuHBpc6mUAI%3D/%EC%8A%A4%EC%BC%80%EC%B9%98.png?authtoken=Hbd9%2F72p9LSU1uOqfnV5hAI%3D)
 
 ---
 
