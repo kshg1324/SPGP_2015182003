@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2015182003.samplegame;
+package kr.ac.kpu.game.s2015182003.samplegame.framework;
 
 import android.graphics.Canvas;
 

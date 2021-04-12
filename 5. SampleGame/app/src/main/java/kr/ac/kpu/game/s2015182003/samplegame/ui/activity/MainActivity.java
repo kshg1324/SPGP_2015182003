@@ -1,8 +1,10 @@
-package kr.ac.kpu.game.s2015182003.samplegame;
+package kr.ac.kpu.game.s2015182003.samplegame.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import kr.ac.kpu.game.s2015182003.samplegame.R;
 
 public class MainActivity extends AppCompatActivity {
 

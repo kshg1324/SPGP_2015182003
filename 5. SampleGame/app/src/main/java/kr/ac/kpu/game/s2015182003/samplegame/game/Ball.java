@@ -1,9 +1,13 @@
-package kr.ac.kpu.game.s2015182003.samplegame;
+package kr.ac.kpu.game.s2015182003.samplegame.game;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+
+import kr.ac.kpu.game.s2015182003.samplegame.R;
+import kr.ac.kpu.game.s2015182003.samplegame.framework.GameObject;
+import kr.ac.kpu.game.s2015182003.samplegame.ui.view.GameView;
 
 public class Ball implements GameObject {
     private static int imagewidth;
@@ -28,8 +32,10 @@ public class Ball implements GameObject {
 
     public void update()
     {
-        this.x += this.dx * GameView.frameTime;
-        this.y += this.dy * GameView.frameTime;
+        MainGame game = MainGame.get();
+
+        this.x += this.dx * game.frameTime;
+        this.y += this.dy * game.frameTime;
         int w = GameView.view.getWidth();
         int h = GameView.view.getHeight();
         if(x < 0 || x > w - imagewidth)
