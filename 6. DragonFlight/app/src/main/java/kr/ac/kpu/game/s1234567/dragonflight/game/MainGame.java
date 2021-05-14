@@ -7,9 +7,8 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import kr.ac.kpu.game.s1234567.dragonflight.framework.BoxCollidable;
+import kr.ac.kpu.game.s1234567.dragonflight.R;
 import kr.ac.kpu.game.s1234567.dragonflight.framework.GameObject;
-import kr.ac.kpu.game.s1234567.dragonflight.framework.Recyclable;
 import kr.ac.kpu.game.s1234567.dragonflight.ui.view.GameView;
 import kr.ac.kpu.game.s1234567.dragonflight.utils.CollisionHelper;
 
@@ -18,6 +17,7 @@ public class MainGame {
     // singleton
     private static MainGame instance;
     private Player player;
+    private Score score;
 
     public static MainGame get() {
         if (instance == null) {
@@ -29,7 +29,10 @@ public class MainGame {
     private boolean initialized;
 
 //    Player player;
-    ArrayList<GameObject> objects = new ArrayList<>();
+    ArrayList<GameObject> bullets = new ArrayList<>();
+    ArrayList<GameObject> objects2 = new ArrayList<>();
+    ArrayList<GameObject> objects3 = new ArrayList<>();
+    ArrayList<ArrayList<GameObject>> layers = new ArrayList<>();
     private static HashMap<Class, ArrayList<GameObject>> recycleBin = new HashMap<>();
 
     public void recycle(GameObject object){
@@ -47,6 +50,9 @@ public class MainGame {
         return array.remove(0);
     }
 
+    public enum Layer{
+        bg1, enemy, bullet, player, bg2, ui, controller, ENEMY_COUNT;
+    }
     public boolean initResources() {
         if (initialized) {
             return false;
@@ -54,56 +60,100 @@ public class MainGame {
         int w = GameView.view.getWidth();
         int h = GameView.view.getHeight();
 
-        player = new Player(w/2, h - 300);
-        objects.add(player);
+        initLayers(Layer.ENEMY_COUNT.ordinal());
 
-        objects.add(new EnemyGenerator());
+        player = new Player(w/2, h - 300);
+        //layers.get(Layer.player.ordinal()).add(player);
+        add(Layer.player, player);
+        add(Layer.controller, new EnemyGenerator());
+        int margin = (int) (20 * GameView.MULTIPLIER);
+        score = new Score(w - margin, margin);
+        score.setScore(0);
+        add(Layer.ui, score);
+
+        //VerticalScrollBackground bg = new VerticalScrollBackground(R.mipmap.bg_city, 10);
+        HorizontalScrollBackground bg = new HorizontalScrollBackground(R.mipmap.bg_city, 10);
+        add(Layer.bg1, bg);
+
+        //VerticalScrollBackground clouds = new VerticalScrollBackground(R.mipmap.clouds, 20);
+        HorizontalScrollBackground clouds = new HorizontalScrollBackground(R.mipmap.clouds, 20);
+        add(Layer.bg2, clouds);
 
         initialized = true;
         return true;
     }
 
+    private void initLayers(int layerCount) {
+        layers = new ArrayList<>();
+        for(int i = 0; i < layerCount; ++i) {
+            layers.add(new ArrayList<>());
+        }
+    }
+
     public void update() {
         //if (!initialized) return;
-        for (GameObject o : objects) {
-            o.update();
+        for (ArrayList<GameObject> objects: layers) {
+            for (GameObject o : objects) {
+                o.update();
+            }
         }
 
-        for (GameObject o1 : objects) {
-            if (!(o1 instanceof Enemy)) {
-                continue;
-            }
-            Enemy enemy = (Enemy)o1;
-            boolean removed = false;
-            for (GameObject o2 : objects) {
-                if (!(o2 instanceof Bullet)) {
-                    continue;
-                }
-                Bullet bullet= (Bullet) o2;
-
+        ArrayList<GameObject> enemies = layers.get(Layer.enemy.ordinal());
+        ArrayList<GameObject> bullets = layers.get(Layer.bullet.ordinal());
+        for (GameObject o1: enemies) {
+            Enemy enemy = (Enemy) o1;
+            boolean collided = false;
+            for (GameObject o2: bullets) {
+                Bullet bullet = (Bullet) o2;
                 if (CollisionHelper.collides(enemy, bullet)) {
-                    Log.d(TAG, "Collision!" + o1 + " - " + o2);
-                    remove(enemy);
-                    remove(bullet);
-//                    bullet.recycle();
-//                    recycle(bullet);
-                    removed = true;
+                    remove(bullet, false);
+                    remove(enemy, false);
+                    score.addScore(10);
+                    collided = true;
                     break;
                 }
             }
-            if (removed) {
-                continue;
-            }
-            if (CollisionHelper.collides(enemy, player)) {
-                Log.d(TAG, "Collision: Enemy - Player");
+            if (collided) {
+                break;
             }
         }
+//        for (GameObject o1 : objects) {
+//            if (!(o1 instanceof Enemy)) {
+//                continue;
+//            }
+//            Enemy enemy = (Enemy)o1;
+//            boolean removed = false;
+//            for (GameObject o2 : objects) {
+//                if (!(o2 instanceof Bullet)) {
+//                    continue;
+//                }
+//                Bullet bullet= (Bullet) o2;
+//
+//                if (CollisionHelper.collides(enemy, bullet)) {
+//                    Log.d(TAG, "Collision!" + o1 + " - " + o2);
+//                    remove(enemy);
+//                    remove(bullet);
+////                    bullet.recycle();
+////                    recycle(bullet);
+//                    removed = true;
+//                    break;
+//                }
+//            }
+//            if (removed) {
+//                continue;
+//            }
+//            if (CollisionHelper.collides(enemy, player)) {
+//                Log.d(TAG, "Collision: Enemy - Player");
+//            }
+//        }
     }
 
     public void draw(Canvas canvas) {
         //if (!initialized) return;
-        for (GameObject o: objects) {
-            o.draw(canvas);
+        for(ArrayList<GameObject> objects: layers){
+            for (GameObject o: objects) {
+                o.draw(canvas);
+            }
         }
     }
 
@@ -112,15 +162,23 @@ public class MainGame {
 //        if (action == MotionEvent.ACTION_DOWN) {
         if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE) {
             player.moveTo(event.getX(), event.getY());
+            int li = 0;
+            for (ArrayList<GameObject> objects: layers) {
+                for (GameObject o : objects) {
+                    Log.d(TAG, "L:" + li + " " + o);
+                }
+                li++;
+            }
             return true;
         }
         return false;
     }
 
-    public void add(GameObject gameObject) {
+    public void add(Layer layer, GameObject gameObject) {
         GameView.view.post(new Runnable() {
             @Override
             public void run() {
+                ArrayList<GameObject> objects = layers.get(layer.ordinal());
                 objects.add(gameObject);
             }
         });
@@ -128,16 +186,27 @@ public class MainGame {
     }
 
     public void remove(GameObject gameObject) {
-        if(gameObject instanceof Recyclable){
-            ((Recyclable) gameObject).recycle();
-            recycle(gameObject);
-        }
-        GameView.view.post(new Runnable() {
+        remove(gameObject, true);
+    }
+    public void remove(GameObject gameObject, boolean delayed) {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                objects.remove(gameObject);
+                for(ArrayList<GameObject> objects: layers){
+                    for (GameObject o: objects) {
+                        boolean removed = objects.remove(gameObject);
+                        if(removed){
+                            break;
+                        }
+                    }
+                }
 //                Log.d(TAG, "<R> object count = " + objects.size());
             }
-        });
+        };
+        if (delayed) {
+            GameView.view.post(runnable);
+        } else {
+            runnable.run();
+        }
     }
 }
