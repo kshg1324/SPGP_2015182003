@@ -27,15 +27,15 @@ public class GameView extends View {
         GameView.view = this;
     }
 
-//    @Override
-//    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-//        //super.onSizeChanged(w, h, oldw, oldh);
-//        MainGame game = MainGame.get();
-//        boolean justInitialized = game.initResources();
-//        if (justInitialized) {
-//            requestCallback();
-//        }
-//    }
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        //super.onSizeChanged(w, h, oldw, oldh);
+        MainGame game = MainGame.get();
+        boolean justInitialized = game.initResources();
+        if (justInitialized) {
+            requestCallback();
+        }
+    }
 
     private void update() {
         MainGame game = MainGame.get();

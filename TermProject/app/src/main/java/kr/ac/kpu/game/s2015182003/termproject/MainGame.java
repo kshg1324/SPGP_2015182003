@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
-import kr.ac.kpu.game.s2015182003.termproject.GameView;
-
 public class MainGame {
 
     private static MainGame instance;
@@ -21,8 +19,15 @@ public class MainGame {
 
     ArrayList<ArrayList<GameObject>> layers = new ArrayList<>();
 
-    public GameObject get(Class<Balls> ballsClass) {
+    public GameObject get(Class<Ball> ballsClass) {
         return null;
+    }
+
+    private void initLayers(int layerCount) {
+        layers = new ArrayList<>();
+        for(int i = 0; i < layerCount; ++i) {
+            layers.add(new ArrayList<>());
+        }
     }
 
     public void update() {
@@ -32,23 +37,21 @@ public class MainGame {
             }
         }
 
-        ArrayList<GameObject> balls = layers.get(Layer.ball.ordinal());
-        for (GameObject o1 : balls) {
-            Balls enemy = (Balls) o1;
-        }
     }
     public enum Layer{
-        ball;
+        ball,controller,ENEMY_COUNT;
     }
 
-//    public boolean initResources() {
-//        if (initialized) {
-//            return false;
-//        }
-//
-//        initialized = true;
-//        return true;
-//    }
+    public boolean initResources() {
+        if (initialized) {
+            return false;
+        }
+
+        initLayers(Layer.ENEMY_COUNT.ordinal());
+        add(Layer.controller, new BallGenerator());
+        initialized = true;
+        return true;
+    }
 
     public void draw(Canvas canvas){
         for(ArrayList<GameObject> objects: layers){
