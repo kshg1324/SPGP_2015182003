@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.RankingActivity"></activity>
         <activity android:name=".activity.PlayActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MemuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -9,12 +9,12 @@ import android.widget.Button;
 
 import kr.ac.kpu.game.s2015182003.termproject.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MemuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_memu);
 
         Button button_1 = (Button) findViewById(R.id.button1);
         Button button_2 = (Button) findViewById(R.id.button2);
