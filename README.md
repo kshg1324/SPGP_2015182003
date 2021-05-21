@@ -83,14 +83,14 @@
 
 ---
 
-###git commit 주기
+### git commit 주기
 ![커밋주기](https://user-images.githubusercontent.com/40324294/119065455-88adb900-ba18-11eb-9faa-d44c0b393cc8.jpg)
 
 * 미루면서 꾸준히 하지 못했고 진행도 별로 하지 못함
 
 ---
 
-###gameobeject 설명
+### gameobeject 설명
 ![gameobject](https://user-images.githubusercontent.com/40324294/119065988-b6dfc880-ba19-11eb-9bda-29156d606c31.png)
 
 * 기본적으로 게임오브젝트는 공 한 종류지만, 개발진행에 따라 골대를 게임오브젝트로 추가 할 수도있음
@@ -101,7 +101,7 @@
 
 ---
 
-###구현하면서 어려운부분 및 수업에서 추가로 다루었으면 하는 부분
+### 구현하면서 어려운부분 및 수업에서 추가로 다루었으면 하는 부분
 * 공을 이동시키는 스와이프 제스쳐 관련해서 다뤘으면 좋겠습니다.
 
 
