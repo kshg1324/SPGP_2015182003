@@ -3,7 +3,7 @@
 ---
 
 ### 게임 컨셉 : 순발력 및 순간판단력을 필요로하는 퍼즐게임. 어느정도 비슷한 게임인 Catch a Color의 스크린샷.
-![Catch a Color](https://thumb2.photo.mybox.naver.com/3472446758918934304?type=m3&setidc=2&filelink=UAeXUN0DZhOQVFQFse2c61ASYs2cHFKQUiBYP/dny6KTE6lKO0RqUJKvRg1UCugS/HrZ2B8ctXkWu8ve8IkQ7wI=&authtoken=krt1yIV6qrQG6kCHfdcYQAI=)
+![catch a color](https://user-images.githubusercontent.com/40324294/119064739-fb1d9980-ba16-11eb-81db-65eddf3af51c.jpg)
 
 ---
 
@@ -11,9 +11,9 @@
 
 * 씬을 메뉴, 게임, 랭킹 등으로 나눈다. 버튼을 통해서 다른 씬으로 이동한다.
 
-* 스프라이트와 애니매이션으로 공을 표현한다.
+* 스프라이트와 애니메이션으로 공을 표현한다.
 
-* 시간을 프로그레스 바를 연동하여 숫자와 함께 보여준다.
+* UI를 통해 점수 및 남은 시간등을 표시한다.
 
 * 공의 이동을 플리크(빠른 드래그 앤 드롭)제스처를 사용하여 구현한다.
 
@@ -36,7 +36,8 @@
 * 시간이 다 되어서 게임이 끝나면, 최종 점수로 올바른 방향에 넣은 공, 잘못된 방향에 넣은 공, 시간 안에 넣지 못해서 사라진 공 갯수를 각각 보여준다.
 
 * 예상되는 게임 모습을 그려본 스케치.
-![예상 스케치](https://thumb1.photo.mybox.naver.com/3472446761445282849?type=m3&setidc=2&filelink=UAeXUN0DZhOQVFQFse2c64fqY73DQ2b4r52jLTCZcWQyNbaWLrds+z3fnMdGhC7MwX7mStIcZdSOyuHBpc6mUAI=&authtoken=jFKpWC4ylugjxF6+RDWqhAI=)
+![스케치](https://user-images.githubusercontent.com/40324294/119064782-18526800-ba17-11eb-8cd3-068f239ad03f.png)
+
 
 ---
 
@@ -60,3 +61,47 @@
 
 * 9주차 - 최종 테스트를 진행하여 그동안 찾지 못한 버그나 미흡한점을 개선한다.
 ---
+### 게임 소개
+* 주기적으로 등장하는 공을 올바른 골대에 넣는 순발력 게임
+
+*![스케치](https://user-images.githubusercontent.com/40324294/119064782-18526800-ba17-11eb-8cd3-068f239ad03f.png)
+
+올바른 골대에 재빨리 넣어야 한다.
+
+---
+### 현재까지의 진행 상황
+
+* 씬을 메뉴, 게임, 랭킹 등으로 나눈다. 버튼을 통해서 다른 씬으로 이동한다. - 90% 버튼을 통해 다른 씬으로 이동 할 수 있다. 비주얼적으로 개선 필요
+
+* 스프라이트와 애니메이션으로 공을 표현한다. - 50% 공의 기본적 구현은 됐으나 씬에서 그리지는 못함
+
+* UI를 통해 점수 및 남은 시간등을 표시한다. - 0%
+
+* 공의 이동을 플리크(빠른 드래그 앤 드롭)제스처를 사용하여 구현한다. - 0%
+
+* 이전에 플레이된 게임들의 결과를 바탕으로 랭킹 시스템을 구현한다. - 0%
+
+---
+
+### git commit 주기
+![커밋주기](https://user-images.githubusercontent.com/40324294/119065455-88adb900-ba18-11eb-9faa-d44c0b393cc8.jpg)
+
+* 미루면서 꾸준히 하지 못했고 진행도 별로 하지 못함
+
+---
+
+### gameobeject 설명
+![gameobject](https://user-images.githubusercontent.com/40324294/119065988-b6dfc880-ba19-11eb-9bda-29156d606c31.png)
+
+* 기본적으로 게임오브젝트는 공 한 종류지만, 개발진행에 따라 골대를 게임오브젝트로 추가 할 수도있음
+
+![화면 캡처 2021-05-21 094643](https://user-images.githubusercontent.com/40324294/119066066-e8f12a80-ba19-11eb-8be3-50ef3d9e1795.jpg)
+
+* ball 클래스에서는 공의 기본적인 설정과 초기화를 담당한다.
+
+---
+
+### 구현하면서 어려운부분 및 수업에서 추가로 다루었으면 하는 부분
+* 공을 이동시키는 스와이프 제스쳐 관련해서 다뤘으면 좋겠습니다.
+
+
