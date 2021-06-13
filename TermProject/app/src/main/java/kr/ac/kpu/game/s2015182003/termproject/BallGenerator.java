@@ -7,9 +7,10 @@ import java.util.Random;
 
 public class BallGenerator implements GameObject {
     private static final String TAG = MainGame.class.getSimpleName();
-    private static final float INITIAL_SPAWN_INTERVAL = 2.0f;
+    private static final float INITIAL_SPAWN_INTERVAL = 3.0f;
     private float time;
     private float spawnInterval;
+    public Timer timer;
 
     public BallGenerator() {
         time = INITIAL_SPAWN_INTERVAL;
@@ -19,7 +20,7 @@ public class BallGenerator implements GameObject {
     public void update() {
         MainGame game = MainGame.get();
         time += game.frameTime;
-        if (time >= spawnInterval) {
+        if (time >= spawnInterval && game.timer.showTimer() > 0) {
             generate();
             time -= spawnInterval;
         }

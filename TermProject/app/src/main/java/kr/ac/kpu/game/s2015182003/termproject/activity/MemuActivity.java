@@ -20,7 +20,6 @@ public class MemuActivity extends AppCompatActivity {
         Button button_2 = (Button) findViewById(R.id.button2);
 
         button_1.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), PlayActivity.class);

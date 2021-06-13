@@ -1,11 +1,20 @@
 package kr.ac.kpu.game.s2015182003.termproject;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.nfc.Tag;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.ArrayList;
+
+import kr.ac.kpu.game.s2015182003.termproject.activity.MemuActivity;
+import kr.ac.kpu.game.s2015182003.termproject.activity.PlayActivity;
 
 public class MainGame {
     private static final String TAG = MainGame.class.getSimpleName();
@@ -20,7 +29,9 @@ public class MainGame {
     public float touch_down_x;
     public float touch_down_y;
     public Score score;
+    public Timer timer;
     public int addscore_count;
+    private PlayActivity playActivity;
 
     public static MainGame get() {
         if (instance == null) {
@@ -29,7 +40,7 @@ public class MainGame {
         return instance;
     }
 
-    ArrayList<ArrayList<GameObject>> layers;
+    public ArrayList<ArrayList<GameObject>> layers;
 
     public GameObject get(Class<Ball> ballsClass) {
         return null;
@@ -58,6 +69,12 @@ public class MainGame {
         score.setScore(0);
         add(Layer.ui, score);
 
+        int margin_timer_x = (int) (60 * GameView.MULTIPLIER);
+        int margin_timer_y = (int) (20 * GameView.MULTIPLIER);
+        timer = new Timer(margin_timer_x, margin_timer_y);
+        timer.setTimer(60);
+        add(Layer.ui, timer);
+
         initialized = true;
         return true;
     }
@@ -69,16 +86,25 @@ public class MainGame {
         }
     }
 
+    long start = System.currentTimeMillis();
+
     public void update() {
         for (ArrayList<GameObject> objects : layers) {
             for (GameObject o : objects) {
                 o.update();
-                if(addscore_count > 0){
+                if(addscore_count > 0 && timer.showTimer() > 0){
                     for(int i = 0; i < addscore_count; ++i)
                     {
                         score.addScore(10);
                     }
                     addscore_count = 0;
+                }
+
+                long end = System.currentTimeMillis();
+                if((end - start) > 1000)
+                {
+                    timer.tickTimer(1);
+                    start = System.currentTimeMillis();
                 }
             }
         }
@@ -152,6 +178,7 @@ public class MainGame {
             runnable.run();
         }
     }
+
 
 
 }

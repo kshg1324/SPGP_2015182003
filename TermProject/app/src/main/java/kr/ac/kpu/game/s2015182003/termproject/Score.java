@@ -20,7 +20,7 @@ public class Score implements GameObject {
         this.displayScore = score;
     }
     public void addScore(int amount) {
-        this.score += amount;
+        this.score = score + amount;
     }
 
     private int score, displayScore;
