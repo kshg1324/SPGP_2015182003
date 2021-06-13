@@ -5,6 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import kr.ac.kpu.game.s2015182003.termproject.R;
+import kr.ac.kpu.game.s2015182003.termproject.GameBitmap;
+import kr.ac.kpu.game.s2015182003.termproject.GameObject;
+import kr.ac.kpu.game.s2015182003.termproject.GameView;
+
 public class Score implements GameObject {
     private final Bitmap bitmap;
     private final int right;

@@ -153,8 +153,8 @@ public class Ball implements GameObject{
                 if (y > GameView.view.getHeight()) {
                     Log.d(TAG, "Red ball goal");
                     game.remove(this);
-                    speed_x = 0;
-                    speed_y = 0;
+                    //score.addScore(10);
+                    game.addscore_count += 1;
                 } else if (y < 0 || x > GameView.view.getWidth() || x < 0) {
                     Log.d(TAG, "Red ball out");
                     game.remove(this);
@@ -166,8 +166,8 @@ public class Ball implements GameObject{
                 if (y < 0) {
                     Log.d(TAG, "Blue ball goal");
                     game.remove(this);
-                    speed_x = 0;
-                    speed_y = 0;
+                    //score.addScore(10);
+                    game.addscore_count += 1;
                 } else if (y > GameView.view.getHeight() || x > GameView.view.getWidth() || x < 0) {
                     Log.d(TAG, "Blue ball out");
                     game.remove(this);
@@ -177,6 +177,8 @@ public class Ball implements GameObject{
                 if (x > GameView.view.getWidth()) {
                     Log.d(TAG, "Purple ball goal");
                     game.remove(this);
+                    //score.addScore(10);
+                    game.addscore_count += 1;
                 } else if (y > GameView.view.getHeight() || y < 0 || x < 0) {
                     Log.d(TAG, "Purple ball out");
                     game.remove(this);
@@ -186,6 +188,8 @@ public class Ball implements GameObject{
                 if (x < 0) {
                     Log.d(TAG, "Yellow ball goal");
                     game.remove(this);
+                    //score.addScore(10);
+                    game.addscore_count += 1;
                 } else if (y > GameView.view.getHeight() || y < 0 || x > GameView.view.getWidth()) {
                     Log.d(TAG, "Yellow ball out");
                     game.remove(this);
