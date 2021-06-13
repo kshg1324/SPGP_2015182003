@@ -15,6 +15,11 @@ public class MainGame {
     private boolean initialized;
     public float touch_x;
     public float touch_y;
+    public float touch_up_x;
+    public float touch_up_y;
+    public float touch_down_x;
+    public float touch_down_y;
+    public Score score;
 
     public static MainGame get() {
         if (instance == null) {
@@ -45,7 +50,7 @@ public class MainGame {
 
     }
     public enum Layer{
-        ball,controller,ENEMY_COUNT;
+        ball,ui,controller,ENEMY_COUNT;
     }
 
     public boolean initResources() {
@@ -53,8 +58,17 @@ public class MainGame {
             return false;
         }
 
+        int w = GameView.view.getWidth();
+        int h = GameView.view.getHeight();
+
         initLayers(Layer.ENEMY_COUNT.ordinal());
         add(Layer.controller, new BallGenerator());
+
+        int margin = (int) (20 * GameView.MULTIPLIER);
+        score = new Score(w - margin, margin);
+        score.setScore(0);
+        add(Layer.ui, score);
+
         initialized = true;
         return true;
     }
@@ -71,22 +85,29 @@ public class MainGame {
         switch (event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
-                Log.d(TAG, "ACTION_DOWN: " + event.getRawX() + event.getRawY());
+                touch_down_x = event.getRawX();
+                touch_down_y = event.getRawY();
                 touch_x = event.getRawX();
                 touch_y = event.getRawY();
+                Log.d(TAG, "ACTION_DOWN: " + touch_down_x + "," + touch_down_y);
+
                 return true;
 
             case MotionEvent.ACTION_MOVE:
-                Log.d(TAG, "ACTION_MOVE: ");
                 touch_x = event.getRawX();
                 touch_y = event.getRawY();
+                Log.d(TAG, "ACTION_MOVE: " + touch_x + "," + touch_y);
+
                 return true;
 
             case MotionEvent.ACTION_UP:
-                Log.d(TAG, "ACTION_UP: ");
-                touch_x = event.getRawX();
-                touch_y = event.getRawY();
-                return false;
+                touch_up_x = event.getRawX();
+                touch_up_y = event.getRawY();
+                Log.d(TAG, "ACTION_UP: " + touch_up_x + "," + touch_up_y);
+
+//                touch_x = event.getRawX();
+//                touch_y = event.getRawY();
+                return true;
         }
         return false;
     }

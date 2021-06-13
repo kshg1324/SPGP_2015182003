@@ -34,7 +34,8 @@ public class BallGenerator implements GameObject {
         int x = random_x;
         int y = random_y;
         int type = random_type;
-        Ball ball = Ball.get(type, x, y);
+
+        Ball ball = Ball.get(type, x, y, 0, 0);
         game.add(MainGame.Layer.ball, ball);
     }
 
