@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Choreographer;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -66,4 +67,9 @@ public class GameView extends View {
         game.draw(canvas);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        MainGame game = MainGame.get();
+        return game.onTouchEvent(event);
+    }
 }
