@@ -61,14 +61,7 @@
 
 * 9주차 - 최종 테스트를 진행하여 그동안 찾지 못한 버그나 미흡한점을 개선한다.
 ---
-### 게임 소개
-* 주기적으로 등장하는 공을 올바른 골대에 넣는 순발력 게임
 
-*![스케치](https://user-images.githubusercontent.com/40324294/119064782-18526800-ba17-11eb-8cd3-068f239ad03f.png)
-
-올바른 골대에 재빨리 넣어야 한다.
-
----
 ### 최종
 
 * 씬을 메뉴, 게임, 랭킹 등으로 나눈다. 버튼을 통해서 다른 씬으로 이동한다. - 90% 버튼을 통해 다른 씬으로 이동 할 수 있다.
@@ -84,21 +77,27 @@
 ---
 
 ### git commit 주기
-![커밋주기](https://user-images.githubusercontent.com/40324294/119065455-88adb900-ba18-11eb-9faa-d44c0b393cc8.jpg)
+![c-1](https://user-images.githubusercontent.com/40324294/121822419-f9738880-ccd9-11eb-8dd3-5e6441bfd6aa.jpg)
+![c-2](https://user-images.githubusercontent.com/40324294/121822437-0e501c00-ccda-11eb-8310-5c4861dde379.jpg)
+![c-3](https://user-images.githubusercontent.com/40324294/121822444-1445fd00-ccda-11eb-94a1-d99ea54e42e2.jpg)
+![c-4](https://user-images.githubusercontent.com/40324294/121822448-18721a80-ccda-11eb-9829-ce3740ebd54a.jpg)
+![c-6](https://user-images.githubusercontent.com/40324294/121822451-1c9e3800-ccda-11eb-83b8-921d299da06f.jpg)
+![c-7](https://user-images.githubusercontent.com/40324294/121822457-22941900-ccda-11eb-8e4a-ca0d838df3ba.jpg)
+![c-8](https://user-images.githubusercontent.com/40324294/121822463-27f16380-ccda-11eb-9087-ab937bebd2c3.jpg)
 
+* 마지막 주말에 5회 커밋한것은 히스토리에만 있고 로그에는 업데이트 안됨.
 * 솔직히 계획 했던 개발일정을 따라가지 않고 진행하였다. 
-* 주말에 5회 커밋한것은 히스토리에만 있고 로그에는 업데이트 안됨.
 * 미루면서 꾸준히 하지 않았기 때문에 계획했던 컨텐츠까지 구현하지 못함.
 
 ---
 
 ### 사용된 기술, 참고한 것들, 수업내용에서 차용한 것, 직접 개발한 것
-![gameobject](https://user-images.githubusercontent.com/40324294/119065988-b6dfc880-ba19-11eb-9bda-29156d606c31.png)
 
+![공움직이기](https://user-images.githubusercontent.com/40324294/121822476-3b043380-ccda-11eb-9cee-2db00d08dcbc.jpg)
 * 공을 움직이는 제스처의 경우 어떻게 구현할지 고민했는데, 찾아봤던 내용들이 생각했던 것하고는 달라서 어설프게나마 직접 구현하였다.
 
+![시간](https://user-images.githubusercontent.com/40324294/121822483-45263200-ccda-11eb-8790-dd63c1485439.jpg)
 * UI를 통한 점수표시 같은 경우 수업시간에 했던 내용(Score 클래스)을 참고했으며, 타이머의 경우도 Score 클래스를 약간 바꾸어 사용하였다.
-
 * 시간 흐름 같은 경우는 System의 currentTimeMillis함수를 통해서 비교하는 식으로 구하였다.
 
 
