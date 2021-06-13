@@ -2,6 +2,7 @@ package kr.ac.kpu.game.s2015182003.termproject;
 
 import android.graphics.Canvas;
 import android.util.Log;
+import android.view.MotionEvent;
 
 public class Ball implements GameObject{
 
@@ -53,23 +54,32 @@ public class Ball implements GameObject{
     @Override
     public void update() {
         MainGame game = MainGame.get();
+        if(game.touch_x != 0 && game.touch_y != 0) {
+            if((game.touch_x > x - 100 && game.touch_x < x + 100) && (game.touch_y > y - 100 && game.touch_y < y + 100)) {
+                x = game.touch_x;
+                y = game.touch_y;
+                game.touch_x = 0;
+                game.touch_y = 0;
+            }
+        }
 
-        if(type == 0)
-        {
-            y += 100 * game.frameTime;
-        }
-        else if(type == 1)
-        {
-            y -= 100 * game.frameTime;
-        }
-        else if(type == 2)
-        {
-            x += 100 * game.frameTime;
-        }
-        else if(type == 3)
-        {
-            x -= 100 * game.frameTime;
-        }
+
+//        if(type == 0)
+//        {
+//            y += 100 * game.frameTime;
+//        }
+//        else if(type == 1)
+//        {
+//            y -= 100 * game.frameTime;
+//        }
+//        else if(type == 2)
+//        {
+//            x += 100 * game.frameTime;
+//        }
+//        else if(type == 3)
+//        {
+//            x -= 100 * game.frameTime;
+//        }
 //        switch (type)
 //        {
 //            case 0:

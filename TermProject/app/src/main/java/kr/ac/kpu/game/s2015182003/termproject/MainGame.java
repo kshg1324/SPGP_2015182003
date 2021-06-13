@@ -13,6 +13,8 @@ public class MainGame {
     private static MainGame instance;
     public float frameTime;
     private boolean initialized;
+    public float touch_x;
+    public float touch_y;
 
     public static MainGame get() {
         if (instance == null) {
@@ -70,14 +72,20 @@ public class MainGame {
         {
             case MotionEvent.ACTION_DOWN:
                 Log.d(TAG, "ACTION_DOWN: " + event.getRawX() + event.getRawY());
+                touch_x = event.getRawX();
+                touch_y = event.getRawY();
                 return true;
 
             case MotionEvent.ACTION_MOVE:
                 Log.d(TAG, "ACTION_MOVE: ");
+                touch_x = event.getRawX();
+                touch_y = event.getRawY();
                 return true;
 
             case MotionEvent.ACTION_UP:
                 Log.d(TAG, "ACTION_UP: ");
+                touch_x = event.getRawX();
+                touch_y = event.getRawY();
                 return false;
         }
         return false;
